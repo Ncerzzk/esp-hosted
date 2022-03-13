@@ -43,7 +43,8 @@ endif
 PWD := $(shell pwd)
 
 obj-m := $(MODULE_NAME).o
-$(MODULE_NAME)-y := esp_bt.o main.o $(module_objects)
+#$(MODULE_NAME)-y := esp_bt.o main.o $(module_objects)
+$(MODULE_NAME)-y :=  main.o $(module_objects)
 
 ifeq ($(CONFIG_SUPPORT_ESP_SERIAL), y)
 	$(MODULE_NAME)-y += esp_serial.o esp_rb.o

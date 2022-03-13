@@ -325,11 +325,11 @@ void process_capabilities(u8 cap)
 	adapter->capabilities = cap;
 
 	/* Reset BT */
-	esp_deinit_bt(esp_get_adapter());
+	//esp_deinit_bt(esp_get_adapter());
 
 	if ((cap & ESP_BT_SPI_SUPPORT) || (cap & ESP_BT_SDIO_SUPPORT)) {
 		msleep(200);
-		esp_init_bt(esp_get_adapter());
+		//esp_init_bt(esp_get_adapter());
 	}
 }
 
@@ -451,13 +451,15 @@ static void process_rx_packet(struct sk_buff *skb)
 			skb_pull(skb, 1);
 
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 13, 0))
-			if (hci_recv_frame(hdev, skb)) {
+//if (hci_recv_frame(hdev, skb)) {
+			if(0){
 #else
 			if (hci_recv_frame(skb)) {
 #endif
 				hdev->stat.err_rx++;
 			} else {
-				esp_hci_update_rx_counter(hdev, *type, skb->len);
+				//esp_hci_update_rx_counter(hdev, *type, skb->len);
+				;
 			}
 		}
 	} else if (payload_header->if_type == ESP_PRIV_IF) {

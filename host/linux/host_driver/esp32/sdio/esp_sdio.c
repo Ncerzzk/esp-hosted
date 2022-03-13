@@ -284,7 +284,8 @@ static void esp_remove(struct sdio_func *func)
 			esp_remove_card(context->adapter);
 
 			if (context->adapter->hcidev) {
-				esp_deinit_bt(context->adapter);
+				//esp_deinit_bt(context->adapter);
+				;
 			}
 
 		}
