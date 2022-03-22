@@ -1,4 +1,4 @@
-CC = gcc
+CC =/usr/bin/arm-linux-gnueabihf-gcc
 
 CFLAGS = -C -Wall -I$(PWD)/../../../host_common/include/ \
 	-I$(PWD)/../../../../common/protobuf-c/ \
