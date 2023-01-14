@@ -658,8 +658,11 @@ static int tx_process(void *data)
 		dev_kfree_skb(tx_skb);
 		tx_skb = NULL;
 	}
-
+#if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 17, 0))
 	do_exit(0);
+else
+	kthread_complete_and_exit(NULL, 0);
+#endif
 	return 0;
 }
 
@@ -750,7 +753,11 @@ static int monitor_process(void *data)
 		old_len = context->rx_byte_count;
 	}
 
+#if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 17, 0))
 	do_exit(0);
+#else
+	kthread_complete_and_exit(NULL, 0);
+#endif
 	return 0;
 }
 #endif
